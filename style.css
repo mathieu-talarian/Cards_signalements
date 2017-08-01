@@ -1,0 +1,13 @@
+.bodyed {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap; }
+  .bodyed .card {
+    width: 20rem;
+    height: 20rem;
+    margin-bottom: 40px;
+    background-color: aliceblue; }
+    .bodyed .card .card-img-top {
+      height: 40px;
+      overflow: hidden; }

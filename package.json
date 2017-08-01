@@ -1,0 +1,14 @@
+{
+  "name": "signalements",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^0.10.0",
+    "node-sass": "^4.5.3"
+  },
+  "scripts": {
+    "start": "http-server .",
+    "css" : "node-sass -w ./style.scss ./style.css"
+  }
+}

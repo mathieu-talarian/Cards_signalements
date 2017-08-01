@@ -1,0 +1,18 @@
+.bodyed {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  .card {
+    width: 20rem;
+    height: 20rem;
+    margin-bottom: 40px;
+    background-color: aliceblue;
+    .card-img-top {
+      height: 40px;
+      overflow: hidden;
+    }
+  }
+}
+
