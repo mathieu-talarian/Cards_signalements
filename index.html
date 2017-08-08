@@ -5,56 +5,134 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/css/mdb.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./style.css">
 </head>
 <body ng-app="MonApp">
-<div class="bodyed" ng-controller="ThisCtrl">
-    <div ng-repeat="cat in categories">
-        <div class="card" ng-style="colorToDis(cat.background_color)">
-            <img class="card-img-top" src="http://www.finalclap.com/ressources/uploads/piano.jpg" alt="">
-            <div class="card-block">
-                <h4 class="card-title">{{cat.name}}</h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis eaque enim esse
-                    fugit molestiae odio possimus! Accusamus blanditiis eos ipsa itaque molestias non perferendis quasi
-                    repellat similique sint, temporibus voluptate.</p>
-                <div ng-if="cat.subcategories.length > 0">
-                    <a ng-repeat="sc in cat.subcategories" href="{{sc.name}}">{{sc.name}}</a>
+<div ng-controller="ThisCtrl" class="cards">
+    <article class="my-card" ng-repeat="categ in categories track by $index">
+        <div class="my-card__thumb" style="background-color:{{categ.background_color}}">
+            <!--<img src="http://cheb-room.ru/uploads/cheb/2016/11/w9RC4W-QqXw-200x200.jpg" alt="">-->
+            <!--<i class="{{categ.icon}}" ng-style="{{colColor(categ.background_color)}}"></i>-->
+            <i class="fa fa-user-o" style="color:{{categ.color_text_icon}}"></i>
+        </div>
+        <div class="my-card__body">
+            <div class="my-card__title"
+                 style="color: white; text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 1px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000;">
+                {{categ.name}}
+            </div>
+            <div class="my-card__infos" ng-style="infosCol(categ.background_color)">
+                <div class="my-card__subcategorie">
+                    <span ng-if="!categ.subcategories || categ.subcategories.length === 0">Pas de sous categories</span>
+                    <span ng-if="categ.subcategories.length">Sous categories : </span>
+                    <div ng-if="categ.subcategories.length">
+                        <button ng-repeat="sCat in categ.subcategories track by $index"
+                                class="btn btn-secondary btn-sm waves-effect"><i class="fa fa-calendar"></i>{{sCat.name}}
+                        </button>
+                    </div>
+                    <button class="btn btn-sm btn-warning waves-effect"><i class="fa fa-plus"></i>Ajouter une sous categorie
+                    </button>
+                </div>
+                <div class="my-card__mails">
+                    <span ng-if="!categ.emails || categ.emails.length === 0">Pas d'email associes</span>
+                    <span ng-if="categ.emails.length">Emails associés : </span>
+                    <ul ng-if="categ.emails.length" ng-repeat="mail in categ.emails track by $index">
+                        <li>{{mail}}</li>
+                    </ul>
+                </div>
+                <div class="my-card__actions">
+                    <button class="btn btn-sm btn-success waves-effect">
+                        <i class="fa fa-edit"></i> Modifier
+                    </button>
+                    <button class="btn btn-sm btn-danger waves-effect">
+                        <i class="fa fa-window-close"></i> Effacer
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
+    </article>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
         integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
         crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script>
     let app = angular.module('MonApp', [])
     app.controller('ThisCtrl', ($scope) => {
 
-        $scope.colorToDis = (color) => {
-            let res = {
-                "background-color" : "#FFFFFF"
+        $scope.colColor = (color) => {
+            let ret = {
+                "color": ''
             }
-            if (color) {
-                let col = color.split('(')[1].split(')')[0].split(',')
-                res['background-color'] = rgbToHex(col[0], col[1], col[2])
+            if (!color) {
+                ret.color = '#cccccc'
             }
-            console.log(res)
-            return res
+            else {
+                ret.color = rgbToHex(color.split('(')[1].split(')')[0].split(','), 2)
+            }
+            return ret
+        }
+
+        $scope.infosCol = (color) => {
+            let col = color.split('(')[1].split(')')[0].split(',')
+            let rgba = `rgba(${col[0]}, ${col[1]}, ${col[2]}, 0.8)`
+            let rend = {
+                "background-color": rgba,
+                "opacity": 1,
+                "color" : setContrast(color)
+            }
+            return rend
+        }
+
+        $scope.bgcColor = (color) => {
+            let ret = {
+                "background-color": ""
+            }
+            if (!color) {
+                ret["background-color"] = "#000000"
+            }
+            else {
+                ret["background-color"] = rgbToHex(color.split('(')[1].split(')')[0].split(','), 1)
+            }
+            return ret
         }
 
         let componentToHex = (c) => {
             var hex = c.toString(16);
-            return hex.length == 1 ? "0" + hex : hex;
+            if (hex === '0') {
+                return '00'
+            }
+            return hex.length == 1 ? " " + hex : hex;
         }
 
-        let rgbToHex = (r, g, b) =>{
-            return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+        let rgbToHex = (col, nbr) => {
+            col.forEach((vl, ke, arr) => {
+                arr[ke] = parseInt(vl)
+            })
+            if (nbr === 1) {
+                return "#" + componentToHex(col[0]) + componentToHex(col[1]) + componentToHex(col[2]);
+            }
+            if (nbr === 2) {
+                return setContrast(col)
+            }
         }
+
+        let setContrast = (color) => {
+            let o = Math.round((color[0] * 299 + color[1] * 587 + color[2] * 114) / 1000)
+            if (o === 0) {
+                return 'black'
+            }
+            else {
+                return (o > 125) ? 'black' : '#DCDCDC'
+            }
+        }
+
 
         $scope.categories =
             [{

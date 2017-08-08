@@ -4,11 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "concurrently": "^3.5.0",
     "http-server": "^0.10.0",
+    "lite-server": "^2.3.0",
     "node-sass": "^4.5.3"
   },
   "scripts": {
-    "start": "http-server .",
-    "css" : "node-sass -w ./style.scss ./style.css"
+    "start": "concurrently \"npm run css\" \"npm run serve\"",
+    "serve": "lite-server .",
+    "css": "node-sass -w ./style.scss ./style.css"
   }
 }
