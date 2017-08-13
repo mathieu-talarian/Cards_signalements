@@ -8,63 +8,74 @@
     <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/css/mdb.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bootstrap-iconpicker-1.9.0/dist/css/bootstrap-iconpicker.min.css">
     <link rel="stylesheet" href="./style.css">
 </head>
 <body ng-app="MonApp">
-<div ng-controller="ThisCtrl" class="cards">
-    <article class="my-card" ng-repeat="categ in categories track by $index">
-        <div class="my-card__thumb" style="background-color:{{categ.background_color}}">
-            <!--<img src="http://cheb-room.ru/uploads/cheb/2016/11/w9RC4W-QqXw-200x200.jpg" alt="">-->
-            <!--<i class="{{categ.icon}}" ng-style="{{colColor(categ.background_color)}}"></i>-->
-            <i class="fa fa-user-o" style="color:{{categ.color_text_icon}}"></i>
-        </div>
-        <div class="my-card__body">
-            <div class="my-card__title"
-                 style="color: white; text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 1px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000;">
-                {{categ.name}}
-            </div>
-            <div class="my-card__infos" ng-style="infosCol(categ.background_color)">
-                <div class="my-card__subcategorie">
-                    <span ng-if="!categ.subcategories || categ.subcategories.length === 0">Pas de sous categories</span>
-                    <span ng-if="categ.subcategories.length">Sous categories : </span>
-                    <div ng-if="categ.subcategories.length">
-                        <button ng-repeat="sCat in categ.subcategories track by $index"
-                                class="btn btn-secondary btn-sm waves-effect"><i class="fa fa-calendar"></i>{{sCat.name}}
-                        </button>
-                    </div>
-                    <button class="btn btn-sm btn-warning waves-effect"><i class="fa fa-plus"></i>Ajouter une sous categorie
-                    </button>
-                </div>
-                <div class="my-card__mails">
-                    <span ng-if="!categ.emails || categ.emails.length === 0">Pas d'email associes</span>
-                    <span ng-if="categ.emails.length">Emails associés : </span>
-                    <ul ng-if="categ.emails.length" ng-repeat="mail in categ.emails track by $index">
-                        <li>{{mail}}</li>
-                    </ul>
-                </div>
-                <div class="my-card__actions">
-                    <button class="btn btn-sm btn-success waves-effect">
-                        <i class="fa fa-edit"></i> Modifier
-                    </button>
-                    <button class="btn btn-sm btn-danger waves-effect">
-                        <i class="fa fa-window-close"></i> Effacer
-                    </button>
-                </div>
-            </div>
-        </div>
-    </article>
+<!--<div ng-controller="ThisCtrl" class="cards">-->
+<div class="row" ng-controller="ThisCtrl">
+    
 </div>
+
+    <!--<div role="iconpicker"></div>-->
+
+    <!--<article class="my-card" ng-repeat="categ in categories track by $index">-->
+        <!--<div class="my-card__thumb" style="background-color:{{categ.background_color}}">-->
+            <!--&lt;!&ndash;<img src="http://cheb-room.ru/uploads/cheb/2016/11/w9RC4W-QqXw-200x200.jpg" alt="">&ndash;&gt;-->
+            <!--&lt;!&ndash;<i class="{{categ.icon}}" ng-style="{{colColor(categ.background_color)}}"></i>&ndash;&gt;-->
+            <!--<i class="fa fa-user-o" style="color:{{categ.color_text_icon}}"></i>-->
+        <!--</div>-->
+        <!--<div class="my-card__body">-->
+            <!--<div class="my-card__title"-->
+                 <!--style="color: white; text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 1px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000;">-->
+                <!--{{categ.name}}-->
+            <!--</div>-->
+            <!--<div class="my-card__infos" ng-style="infosCol(categ.background_color)">-->
+                <!--<div class="my-card__subcategorie">-->
+                    <!--<span ng-if="!categ.subcategories || categ.subcategories.length === 0">Pas de sous categories</span>-->
+                    <!--<span ng-if="categ.subcategories.length">Sous categories : </span>-->
+                    <!--<div ng-if="categ.subcategories.length">-->
+                        <!--<button ng-repeat="sCat in categ.subcategories track by $index"-->
+                                <!--class="btn btn-secondary btn-sm waves-effect"><i class="fa fa-calendar"></i>{{sCat.name}}-->
+                        <!--</button>-->
+                    <!--</div>-->
+                    <!--<button class="btn btn-sm btn-warning waves-effect"><i class="fa fa-plus"></i>Ajouter une sous categorie-->
+                    <!--</button>-->
+                <!--</div>-->
+                <!--<div class="my-card__mails">-->
+                    <!--<span ng-if="!categ.emails || categ.emails.length === 0">Pas d'email associes</span>-->
+                    <!--<span ng-if="categ.emails.length">Emails associés : </span>-->
+                    <!--<ul ng-if="categ.emails.length" ng-repeat="mail in categ.emails track by $index">-->
+                        <!--<li>{{mail}}</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="my-card__actions">-->
+                    <!--<button class="btn btn-sm btn-success waves-effect">-->
+                        <!--<i class="fa fa-edit"></i> Modifier-->
+                    <!--</button>-->
+                    <!--<button class="btn btn-sm btn-danger waves-effect">-->
+                        <!--<i class="fa fa-window-close"></i> Effacer-->
+                    <!--</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</article>-->
+<!--</div>-->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
         integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="bootstrap-iconpicker-1.9.0/dist/js/bootstrap-iconpicker.min.js"></script>
+<script src="bootstrap-iconpicker-1.9.0/dist/js/bootstrap-iconpicker-iconset-all.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script>
     let app = angular.module('MonApp', [])
-    app.controller('ThisCtrl', ($scope) => {
+
+    app
+        .controller('ThisCtrl', ($scope) => {
 
         $scope.colColor = (color) => {
             let ret = {
